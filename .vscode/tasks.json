@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run C++ (shared input/output in folder)",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "g++ -std=c++17 -o \"${fileDirname}\\${fileBasenameNoExtension}\" \"${file}\" && \"${fileDirname}\\${fileBasenameNoExtension}\" < \"${fileDirname}\\input.txt\" > \"${fileDirname}\\output.txt\""
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
