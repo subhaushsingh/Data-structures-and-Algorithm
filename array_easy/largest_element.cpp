@@ -3,9 +3,9 @@ using namespace std;
 
 
 int main(){
-    int arr[5] = {5,3,19,10,12};
+    vector<int> arr={15,43,23,65,78};
     int largest=arr[0];
-    for(int i=1;i<5;i++){
+    for(int i=1;i<arr.size();i++){
         if(arr[i]>largest) largest=arr[i];
     }
     cout << largest;
