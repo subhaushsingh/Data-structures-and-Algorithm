@@ -18,12 +18,26 @@ class Solution {
     }
 
 
+    int Maxprofit2(vector<int> &nums){
+        int n=nums.size();
+        int mini=nums[0],profit=0;
+        for(int i=1;i<n;i++){
+            int cost = nums[i]-mini;
+            profit = max(profit,cost);
+            mini=min(nums[i],mini);
+        }
+
+        return profit;
+    }
+
+
+
 };
 
 int main(){
     vector<int> arr={7,1,5,3,6,4};
     Solution obj;
-    int ans=obj.MaxProfit(arr);
+    int ans=obj.Maxprofit2(arr);
     cout << ans;
 
 
