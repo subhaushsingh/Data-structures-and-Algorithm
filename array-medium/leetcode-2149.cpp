@@ -40,5 +40,6 @@ int main()
     arr=obj.rearrangeArray(arr);
     for(auto it:arr) {
     cout << it << " ";
+
     }
 }
