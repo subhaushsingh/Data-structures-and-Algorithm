@@ -1,5 +1,5 @@
 # Data Structures and Algorithms
-repository for DSA practice and problem-solving.
+Repository for DSA practice and problem-solving.
 
 
 ## Overview
