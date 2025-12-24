@@ -25,6 +25,7 @@ class Solution{
                 else high=mid-1;
             }
         }
+        return -1;
 
     }
 
@@ -32,8 +33,11 @@ class Solution{
 
 
 int main(){
-
-
+    vector<int> nums = {2,5,6,0,0,1,2};
+    Solution r;
+    int ans=r.search(nums,0);
+    cout << ans;
+    
 
     return 0;
 }
