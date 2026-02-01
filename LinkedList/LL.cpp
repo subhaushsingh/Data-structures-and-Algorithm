@@ -24,11 +24,14 @@ private:
 public:
     LL();                 // constructor
     void insert(T val);   // add node
-    void traverse();      // TRAVERSE
+    void traverse(); 
+    int length();     // TRAVERSE
     void traverseRecursive();
     void traverseRecursiveReverse();
     void reverseLL();
     void reverseLLrecursion();
+    bool detectLoop();
+    Node<T>* startOfLoop();
     ~LL();                // destructor
 };
 
@@ -59,6 +62,18 @@ void LL<T>::traverse() {
     }
     cout << endl;
 }
+
+template <typename T>
+int LL<T>::length() {
+    int cnt=0;
+    Node<T>* temp = head;
+    while (temp!=nullptr) {
+        cnt++;
+        temp = temp->next;
+    }
+    return cnt;
+}
+
 
 
 
@@ -119,6 +134,38 @@ void LL<T>::reverseLLrecursion() {
     reverseLLrecursion(nullptr, head);
 }
 
+template <typename T>
+bool LL<T>::detectLoop(){
+    if (head==NULL || head->next==NULL){
+           return false;
+       }
+    Node<T>* p;
+    Node<T>* q;
+    p=head;
+    q=head;
+    do
+    {
+        p=p->next;
+        q=q->next;
+        q=q?q->next:nullptr; 
+    } while (p&&q && p!=q );
+    if(p==q) return true;
+    return false;
+}
+
+template <typename T>
+Node<T>* LL<T>::startOfLoop(){
+    map<Node<T>*,int> mpp;
+    Node<T>* temp = head;
+    while(temp){
+        if(mpp.find(temp)!= mpp.end()){
+            return temp;
+        }
+        mpp[temp]=1;
+        temp=temp->next;
+    }
+    return nullptr;
+}
 
 template <typename T>
 LL<T>::~LL() {
@@ -140,6 +187,7 @@ int main() {
     list.insert(40);
     list.insert(50);
 
-    list.reverseLLrecursion();
+    
+    
     list.traverse(); 
 }
