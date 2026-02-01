@@ -19,6 +19,7 @@ private:
     Node<T>* head;
     void traverseRecursive(Node<T>* temp);
     void traverseRecursiveReverse(Node<T>* temp);
+    void reverseLLrecursion(Node<T>* q,Node<T>* p);
 
 public:
     LL();                 // constructor
@@ -27,6 +28,7 @@ public:
     void traverseRecursive();
     void traverseRecursiveReverse();
     void reverseLL();
+    void reverseLLrecursion();
     ~LL();                // destructor
 };
 
@@ -101,6 +103,22 @@ void LL<T>::reverseLL(){
     head=s;
 }
 
+template <typename T>
+void LL<T>::reverseLLrecursion(Node<T>* q,Node<T>* p){
+    if(p){
+        reverseLLrecursion(p,p->next);
+        p->next=q;
+    }
+    else{
+        head=q;
+    }
+}
+
+template <typename T>
+void LL<T>::reverseLLrecursion() {
+    reverseLLrecursion(nullptr, head);
+}
+
 
 template <typename T>
 LL<T>::~LL() {
@@ -122,6 +140,6 @@ int main() {
     list.insert(40);
     list.insert(50);
 
-    list.reverseLL();
+    list.reverseLLrecursion();
     list.traverse(); 
 }
