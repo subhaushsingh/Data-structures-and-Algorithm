@@ -136,35 +136,66 @@ void LL<T>::reverseLLrecursion() {
 
 template <typename T>
 bool LL<T>::detectLoop(){
-    if (head==NULL || head->next==NULL){
-           return false;
-       }
-    Node<T>* p;
-    Node<T>* q;
-    p=head;
-    q=head;
-    do
-    {
-        p=p->next;
-        q=q->next;
-        q=q?q->next:nullptr; 
-    } while (p&&q && p!=q );
-    if(p==q) return true;
+    // if (head==NULL || head->next==NULL){
+    //        return false;
+    //    }
+    // Node<T>* p;
+    // Node<T>* q;
+    // p=head;
+    // q=head;
+    // do
+    // {
+    //     p=p->next;
+    //     q=q->next;
+    //     q=q?q->next:nullptr; 
+    // } while (p&&q && p!=q );
+    // if(p==q) return true;
+    // return false;
+      Node<T>* slow = head;
+    Node<T>* fast = head;
+
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if (slow == fast)
+            return true;
+    }
     return false;
 }
 
 template <typename T>
 Node<T>* LL<T>::startOfLoop(){
-    map<Node<T>*,int> mpp;
-    Node<T>* temp = head;
-    while(temp){
-        if(mpp.find(temp)!= mpp.end()){
-            return temp;
-        }
-        mpp[temp]=1;
-        temp=temp->next;
+    //Brute force method
+    // map<Node<T>*,int> mpp;
+    // Node<T>* temp = head;
+    // while(temp){
+    //     if(mpp.find(temp)!= mpp.end()){
+    //         return temp;
+    //     }
+    //     mpp[temp]=1;
+    //     temp=temp->next;
+    // }
+    // return nullptr;
+    Node<T>* slow = head;
+    Node<T>* fast = head;
+
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if (slow == fast){
+            slow=head;
+
+            while(slow!=fast){
+                slow=slow->next;
+                fast=fast->next;
+            }
+            //return slow;<-----ANSWER
+            return true;
+        };
     }
-    return nullptr;
+    return false;
 }
 
 template <typename T>
