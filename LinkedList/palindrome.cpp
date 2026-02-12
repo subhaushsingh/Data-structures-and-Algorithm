@@ -14,6 +14,49 @@ using namespace std;
  */
 class Solution {
 public:
+    ListNode* reverse(ListNode* head) {
+        if (!head || !head->next)
+            return head;
+        ListNode* s = head;
+        ListNode* f = s->next;
+        ListNode* h = f->next;
+        s->next = nullptr;
+        while (f) {
+            f->next = s;
+            s = f;
+            f = h;
+            if (h)
+                h = h->next;
+        }
+        return s;
+    }
+
+    bool isPalindromeOptimal(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return true;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while (fast->next != NULL && fast->next->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode* newHead = reverse(slow->next);
+        ListNode* first = head;
+        ListNode* second = newHead;
+        while (second) {
+            if (first->val != second->val) {
+                reverse(newHead);
+                return false;
+            }
+            first = first->next;
+            second = second->next;
+        }
+        reverse(newHead);
+        return true;
+    }
+
+
+
     bool isPalindrome(ListNode* head) {
         stack<int> st;
         ListNode* temp=head;
