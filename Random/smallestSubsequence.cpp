@@ -8,7 +8,6 @@ public:
         vector<int> last(26);
         vector<bool> used(26, false);
 
-        // Last occurrence of each character
         for (int i = 0; i < s.size(); i++) {
             last[s[i] - 'a'] = i;
         }
