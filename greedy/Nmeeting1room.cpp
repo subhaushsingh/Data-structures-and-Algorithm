@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <bits/stdc++.h>
-using namespace std;
-
 int maxMeetings(vector<int>& start, vector<int>& end) {
 
     int n = start.size();
